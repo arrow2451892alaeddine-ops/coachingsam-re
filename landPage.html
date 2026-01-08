@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach Sport de Combat | Révélez le combattant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --primary-color: #F4D03F; /* Jaune Or / Dynamique */
+            --dark-bg: #121212;
+            --light-bg: #1e1e1e;
+            --text-white: #ffffff;
+            --text-gray: #cccccc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- UTILITAIRES --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .text-center { text-align: center; }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            padding: 12px 30px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: transform 0.3s ease, background 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background-color: #fff;
+        }
+
+        .highlight { color: var(--primary-color); }
+
+        /* --- HEADER / NAV --- */
+        header {
+            position: absolute;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 10;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary-color); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?q=80&w=1920&auto=format&fit=crop'); /* Image de boxe générique */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- BENEFICES --- */
+        .features {
+            background-color: var(--light-bg);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: var(--dark-bg);
+            padding: 30px;
+            border-bottom: 3px solid var(--primary-color);
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            background: #252525;
+        }
+
+        .feature-card h3 { margin-bottom: 15px; color: var(--primary-color); }
+
+        /* --- PROGRAMMES --- */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .program-card {
+            background: var(--light-bg);
+            padding: 40px;
+            text-align: center;
+            border: 1px solid #333;
+            position: relative;
+        }
+
+        .program-card h3 { font-size: 1.8rem; margin-bottom: 10px; }
+        .program-desc { margin-bottom: 25px; color: var(--text-gray); font-size: 0.9rem; }
+
+        /* --- ABOUT COACH --- */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .about-img {
+            flex: 1;
+            height: 400px;
+            background-color: #333; /* Remplacer par votre photo */
+            background-image: url('https://images.unsplash.com/photo-1591117207239-78898dd1ca65?q=80&w=800&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+            border: 2px solid var(--primary-color);
+        }
+
+        .about-text { flex: 1; }
+        .about-text h2 { margin-bottom: 20px; font-size: 2.5rem; }
+        .about-text blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 15px;
+            margin: 20px 0;
+            font-style: italic;
+            color: var(--text-gray);
+        }
+
+        /* --- TESTIMONIALS --- */
+        .testimonials { background-color: var(--light-bg); }
+        .testimonial-card {
+            background: var(--dark-bg);
+            padding: 25px;
+            border-radius: 8px;
+            font-style: italic;
+        }
+        .client-name {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-style: normal;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #000;
+            padding: 50px 0;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        .social-links { margin: 20px 0; }
+        .social-links a { margin: 0 10px; font-weight: bold; color: var(--primary-color); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .about-content { flex-direction: column; }
+            .about-img { width: 100%; height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">COACH<span class="highlight">COMBAT</span></div>
+                <a href="#contact" class="btn" style="padding: 8px 15px; font-size: 0.8rem;">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Révélez le <span class="highlight">Combattant</span><br>qui est en vous</h1>
+            <p>Coaching privé et collectif en Boxe, MMA et Self-Defense. Transformez votre physique et forgez votre mental.</p>
+            <a href="#contact" class="btn">Réserver ma séance d'essai gratuite</a>
+        </div>
+    </section>
+
+    <section class="section-padding features">
+        <div class="container">
+            <h2 class="text-center">Plus qu'un sport, <span class="highlight">un mode de vie</span></h2>
+            <div class="grid-3">
+                <div class="feature-card">
+                    <h3>🔥 Conditionnement</h3>
+                    <p>Brûlez jusqu'à 800 calories par séance avec des entrainements haute intensité.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🧠 Mental d'Acier</h3>
+                    <p>Apprenez à gérer la pression, canaliser votre stress et repousser vos limites.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🛡️ Technique Réelle</h3>
+                    <p>Pas de chorégraphie. Apprenez les vrais mouvements de combat en toute sécurité.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="programmes">
+        <div class="container">
+            <h2 class="text-center">Choisissez votre <span class="highlight">Arène</span></h2>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <h3>Coaching 1-on-1</h3>
+                    <p class="program-desc">Suivi 100% personnalisé. Correction technique minutieuse et nutrition. Idéal pour progression rapide.</p>
+                    <a href="#contact" class="btn">En savoir plus</a>
+                </div>
+                <div class="program-card">
+                    <h3>Cours Collectifs</h3>
+                    <p class="program-desc">L'énergie du groupe pour se dépasser. Ambiance bienveillante, entraide et sueur garanties.</p>
+                    <a href="#contact" class="btn">Voir planning</a>
+                </div>
+                <div class="program-card">
+                    <h3>Préparation Physique</h3>
+                    <p class="program-desc">Circuit training spécial sports de combat. Renforcement et cardio sans prendre de coups.</p>
+                    <a href="#contact" class="btn">Démarrer</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding features" id="coach">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-img">
+                    </div>
+                <div class="about-text">
+                    <h2>Entraînez-vous avec un <span class="highlight">Expert</span></h2>
+                    <blockquote>"La discipline bat le talent quand le talent manque de discipline."</blockquote>
+                    <p>Je suis <strong>[VOTRE NOM]</strong>, coach diplômé avec plus de 10 ans d'expérience. Ancien compétiteur, j'ai développé une pédagogie adaptée à tous les niveaux.</p>
+                    <br>
+                    <ul style="margin-bottom: 20px;">
+                        <li>🏆 Champion Régional [Année]</li>
+                        <li>🎓 Certifié Préparation Mentale</li>
+                        <li>🥊 +500 élèves accompagnés</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding testimonials">
+        <div class="container">
+            <h2 class="text-center" style="margin-bottom: 40px;">Ils sont montés sur le <span class="highlight">Ring</span></h2>
+            <div class="grid-3">
+                <div class="testimonial-card">
+                    <p>"Je n'avais jamais mis les gants. Le coach a su me mettre en confiance. J'ai perdu 10kg et je me sens plus fort."</p>
+                    <span class="client-name">- Thomas, 34 ans</span>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Les séances sont intenses mais on en redemande. Une pédagogie au top et zéro jugement. Merci coach !"</p>
+                    <span class="client-name">- Sarah, 28 ans</span>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Idéal pour évacuer le stress du boulot. C'est ma thérapie hebdomadaire."</p>
+                    <span class="client-name">- Karim, 40 ans</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container text-center">
+            <h2>Questions Fréquentes</h2>
+            <div style="margin-top: 30px; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
+                <div style="margin-bottom: 20px;">
+                    <h4 class="highlight">Dois-je être déjà en forme ?</h4>
+                    <p style="color: var(--text-gray);">Non, c'est l'entraînement qui vous mettra en forme. Tout est adapté à votre niveau.</p>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <h4 class="highlight">Est-ce que je vais prendre des coups ?</h4>
+                    <p style="color: var(--text-gray);">La sécurité est la priorité. Pas de coups pour les débutants, le sparring est optionnel.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <h2>Prêt à passer à l'action ?</h2>
+            <p style="margin: 20px 0; color: var(--text-gray);">Réservez votre séance maintenant. Places limitées.</p>
+            
+            <a href="mailto:votre-email@exemple.com" class="btn">Je réserve ma séance</a>
+
+            <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">TikTok</a>
+                <a href="#">Facebook</a>
+            </div>
+            <p style="font-size: 0.8rem; color: #555;">&copy; 2024 Coach Sport de Combat. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
